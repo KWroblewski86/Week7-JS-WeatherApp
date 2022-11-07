@@ -24,6 +24,9 @@ function displayResults(weather) {
     let city = document.querySelector('.city');
     city.innerHTML = weather['name'];
 
+    let country = document.querySelector('.country');
+    country.innerHTML = weather['sys']['country'];
+
     let now = new Date();
     let date = document.querySelector('.date');
     date.innerText = dateBuilder(now);
@@ -35,10 +38,10 @@ function displayResults(weather) {
     weather_el.innerText = weather.weather[0].main;
 
     let hilow = document.querySelector('.hi-low');
-    hilow.innerText = `${Math.round(weather.main.temp_min)}°F / ${Math.round(weather.main.temp_max)}°F`;
+    hilow.innerText = `${Math.round(weather.main.temp_max)}°F / ${Math.round(weather.main.temp_min)}°F`;
 
     let humid = document.querySelector('.humidity');
-    humid.innerText = weather['main']['humidity'];
+    humid.innerHTML = `${weather['main']['humidity']}<span> Humidity</span>`;
 }
 
 
@@ -53,5 +56,5 @@ function dateBuilder(d) {
     let month = months[d.getMonth()];
     let year = d.getFullYear();
 
-    return `${day} ${date} ${month} ${year}`;
+    return `${day} ${month} ${date} ${year}`;
 }
